@@ -9,7 +9,7 @@ function createGrid(gridHeight, gridWidth, gridContainer) {
             gridCell.style.width = 500 / gridWidth + 'px';
 
             gridCell.addEventListener('mouseenter', () => {
-                gridCell.style['filter'] = 'brightness(50%)';
+                gridCell.style['filter'] = 'brightness(25%)';
             });
             gridRow.appendChild(gridCell);
         }
