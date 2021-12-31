@@ -16,12 +16,20 @@ body {
     margin: 1em;
 }
 
-.buttons-container .new-grid-button, .clear-grid-button {
+.buttons-container .new-grid-button, .clear-grid-button, .toggle-rgb-button {
     border: 1px solid black;
     padding: 1em;
 }
 
-.buttons-container .new-grid-button:hover, .clear-grid-button:hover {
+.buttons-container .new-grid-button:hover, .clear-grid-button:hover, .toggle-rgb-button:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 1px 1px 1px 1px black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.toggled-on {
     background-color: black;
     color: white;
     box-shadow: 1px 1px 1px 1px black;

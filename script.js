@@ -9,7 +9,13 @@ function createGrid(gridLength, gridContainer) {
             gridCell.style.width = 500 / gridLength + 'px';
 
             gridCell.addEventListener('mouseenter', () => {
-                gridCell.style['filter'] = 'brightness(25%)';
+                if (RGBOn) {
+                    const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
+                    const rgb = `rgb(${randomBetween(0, 255)},${randomBetween(0, 255)},${randomBetween(0, 255)})`;
+                    gridCell.style['background-color'] = rgb;
+                } else {
+                    gridCell.style['filter'] = 'brightness(25%)';
+                }
             });
             gridRow.appendChild(gridCell);
         }
@@ -35,7 +41,8 @@ function createInitialGrid() {
 let gridLength = 10;
 // Create reference to existing gridcontainerwrapper
 const gridContainerWrapper = document.querySelector('.grid-container-wrapper');
-
+// Boolean used to determine whether to draw with RGB or not. Off by default.
+let RGBOn = false;
 
 function main() {
     // Create the initial grid.
@@ -44,6 +51,7 @@ function main() {
     // Create reference to existing grid buttons.
     const newGridButton = document.querySelector('.new-grid-button');
     const clearGridButton = document.querySelector('.clear-grid-button');
+    const toggleRgbButton = document.querySelector('.toggle-rgb-button');
 
     // New grid button, when pressed, prompts user to input new dimensions, and a new grid is created with corresponding dimensions inputted.
     newGridButton.addEventListener('click', () => {
@@ -64,7 +72,6 @@ function main() {
 
     // Clear grid button, when pressed, clears grid with the same dimensions as what it was previously.
     clearGridButton.addEventListener('click', () => {
-        console.log("test");
         // delete old grid
         gridContainerWrapper.removeChild(gridContainerWrapper.childNodes[0]);
 
@@ -75,7 +82,19 @@ function main() {
         createGrid(gridLength, newGridContainer);
     });
 
-
+    // Toggle RGB button, when pressed, draws on grid with rainbow colors, rather than shades of black.
+    toggleRgbButton.addEventListener('click', () => {
+        // delete old grid
+        gridContainerWrapper.removeChild(gridContainerWrapper.childNodes[0]);
+        // toggle rgb
+        RGBOn = !RGBOn;
+        toggleRgbButton.classList.toggle("toggled-on")
+        // create new grid
+        const newGridContainer = document.createElement('div');
+        newGridContainer.style.display = 'flex';
+        gridContainerWrapper.append(newGridContainer);
+        createGrid(gridLength, newGridContainer);
+    });
 }
 
 main();
