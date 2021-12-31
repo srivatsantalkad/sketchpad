@@ -16,19 +16,15 @@ body {
     margin: 1em;
 }
 
-.buttons-container .clear-grid-button {
+.buttons-container .new-grid-button, .clear-grid-button {
     border: 1px solid black;
     padding: 1em;
 }
 
-.buttons-container .clear-grid-button:hover {
+.buttons-container .new-grid-button:hover, .clear-grid-button:hover {
     background-color: black;
     color: white;
     box-shadow: 1px 1px 1px 1px black;
     font-weight: bold;
     cursor: pointer;
-}
-
-.grid-container-wrapper {
-
 }
